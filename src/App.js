@@ -9,18 +9,18 @@ const initialContactsList = [
     id: uuid(),
     name: 'Ram',
     mobileNo: 9999988888,
-    isFavorite: false,
-  },
-  {
-    id: uuid(),
-    name: 'Pavan',
-    mobileNo: 8888866666,
     isFavorite: true,
   },
   {
     id: uuid(),
-    name: 'Nikhil',
-    mobileNo: 9999955555,
+    name: 'joseph',
+    mobileNo: 8688031606,
+    isFavorite: true,
+  },
+  {
+    id: uuid(),
+    name: 'mounika',
+    mobileNo: 9951479584,
     isFavorite: false,
   },
 ]
@@ -34,20 +34,25 @@ class App extends Component {
 
   onAddContact = event => {
     event.preventDefault()
+
     const {name, mobileNo} = this.state
 
-    const newContact = {
-      id: uuid(),
-      name,
-      mobileNo,
-      isFavorite: false,
-    }
+    if (name !== 0 && mobileNo.length === 10) {
+      const newContact = {
+        id: uuid(),
+        name,
+        mobileNo,
+        isFavorite: false,
+      }
 
-    this.setState(prevState => ({
-      contactsList: [...prevState.contactsList, newContact],
-      name: '',
-      mobileNo: '',
-    }))
+      this.setState(prevState => ({
+        contactsList: [...prevState.contactsList, newContact],
+        name: '',
+        mobileNo: '',
+      }))
+    } else {
+      alert('Please enter the valid details')
+    }
   }
 
   onChangeMobileNo = event => {
@@ -84,6 +89,7 @@ class App extends Component {
               onChange={this.onChangeName}
               className="input"
               placeholder="Name"
+              onBlur={this.focus}
             />
             <input
               className="input"
